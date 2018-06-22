@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c8176202d34b45dc9aa28f6c7272c1c5" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="ParkingDbModel.Despesa" Width="1.5" PointX="5.25" PointY="10.75" />
+        <EntityTypeShape EntityType="ParkingDbModel.DespesaCategoria" Width="1.5" PointX="5.25" PointY="21.25" />
+        <EntityTypeShape EntityType="ParkingDbModel.DespesaCategoriaGrupo" Width="1.5" PointX="3" PointY="31.5" />
+        <EntityTypeShape EntityType="ParkingDbModel.Endereco" Width="1.5" PointX="1.5" PointY="3.125" />
+        <EntityTypeShape EntityType="ParkingDbModel.Funcionario" Width="1.5" PointX="3" PointY="10.125" />
+        <EntityTypeShape EntityType="ParkingDbModel.Pessoa" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="ParkingDbModel.Receita" Width="1.5" PointX="10.25" PointY="12.625" />
+        <EntityTypeShape EntityType="ParkingDbModel.ReceitaGrupo" Width="1.5" PointX="3" PointY="14.625" />
+        <EntityTypeShape EntityType="ParkingDbModel.Usuario" Width="1.5" PointX="0.75" PointY="11.5" />
+        <AssociationConnector Association="ParkingDbModel.FK_Despesa_DespesaCategoria" />
+        <AssociationConnector Association="ParkingDbModel.FK_Despesa_Funcionario" />
+        <AssociationConnector Association="ParkingDbModel.FK_Despesa_Usuario" />
+        <AssociationConnector Association="ParkingDbModel.FK_DespesaCategoria_DespesaCategoriaGrupo" />
+        <AssociationConnector Association="ParkingDbModel.FK_DespesaItem_Usuario" />
+        <AssociationConnector Association="ParkingDbModel.FK_DespesaItemGrupo_Usuario" />
+        <AssociationConnector Association="ParkingDbModel.FK_Pessoa_Endereco" />
+        <AssociationConnector Association="ParkingDbModel.FK_Funcionario_Pessoa" />
+        <AssociationConnector Association="ParkingDbModel.FK_Funcionario_Usuario" />
+        <AssociationConnector Association="ParkingDbModel.FK_Receita_ReceitaGrupo" />
+        <AssociationConnector Association="ParkingDbModel.FK_Receita_Usuario" />
+        <AssociationConnector Association="ParkingDbModel.FK_ReceitaGrupo_Usuario" />
+        <AssociationConnector Association="ParkingDbModel.FK_Usuario_Usuario" />
+        <EntityTypeShape EntityType="ParkingDbModel.Mensalista" Width="1.5" PointX="4" PointY="5.5" />
+        <AssociationConnector Association="ParkingDbModel.FK_Mensalista_Pessoa" />
+        <AssociationConnector Association="ParkingDbModel.FK_Mensalista_Usuario" />
+        <AssociationConnector Association="ParkingDbModel.FK_Receita_Mensalista" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

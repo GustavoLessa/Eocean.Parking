@@ -1,0 +1,1036 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ParkingDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Despesa">
+          <Key>
+            <PropertyRef Name="IdDespesa" />
+          </Key>
+          <Property Name="IdDespesa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ValorDespesa" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="DtPagamento" Type="datetime" />
+          <Property Name="DtVencimento" Type="datetime" />
+          <Property Name="Pago" Type="bit" Nullable="false" />
+          <Property Name="PossuiParcelas" Type="bit" Nullable="false" />
+          <Property Name="QtParcelas" Type="int" />
+          <Property Name="IdDespesaCategoria" Type="int" />
+          <Property Name="IdFuncionario" Type="int" />
+          <Property Name="DtCadastro" Type="datetime" Nullable="false" />
+          <Property Name="DtAlteracao" Type="datetime" />
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="CodDespesa" Type="varchar" MaxLength="8" />
+          <Property Name="IdFornecedor" Type="int" />
+        </EntityType>
+        <EntityType Name="DespesaCategoria">
+          <Key>
+            <PropertyRef Name="IdDespesaCategoria" />
+          </Key>
+          <Property Name="IdDespesaCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="500" />
+          <Property Name="DtCadastro" Type="datetime" Nullable="false" />
+          <Property Name="DtAlteracao" Type="datetime" />
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="IdDespesaCategoriaGrupo" Type="int" />
+        </EntityType>
+        <EntityType Name="DespesaCategoriaGrupo">
+          <Key>
+            <PropertyRef Name="IdDespesaCategoriaGrupo" />
+          </Key>
+          <Property Name="IdDespesaCategoriaGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="500" />
+          <Property Name="DtCadastro" Type="datetime" Nullable="false" />
+          <Property Name="DtAlteracao" Type="datetime" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Endereco">
+          <Key>
+            <PropertyRef Name="IdEndereco" />
+          </Key>
+          <Property Name="IdEndereco" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Logradouro" Type="varchar" MaxLength="150" />
+          <Property Name="NrLogradouro" Type="varchar" MaxLength="20" />
+          <Property Name="Complemento" Type="varchar" MaxLength="20" />
+          <Property Name="Bairro" Type="varchar" MaxLength="50" />
+          <Property Name="Cidade" Type="varchar" MaxLength="50" />
+          <Property Name="Estado" Type="varchar" MaxLength="25" />
+          <Property Name="UF" Type="varchar" MaxLength="2" />
+          <Property Name="Cep" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Funcionario">
+          <Key>
+            <PropertyRef Name="IdFuncionario" />
+          </Key>
+          <Property Name="IdFuncionario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cargo" Type="varchar" MaxLength="50" />
+          <Property Name="DtAdmissao" Type="datetime" />
+          <Property Name="Salario" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IdPessoa" Type="int" Nullable="false" />
+          <Property Name="DtCadastro" Type="datetime" Nullable="false" />
+          <Property Name="DtAlteracao" Type="datetime" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Mensalista">
+          <Key>
+            <PropertyRef Name="IdMensalista" />
+          </Key>
+          <Property Name="IdMensalista" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPessoa" Type="int" Nullable="false" />
+          <Property Name="PlacaVeiculo" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="MarcaModeloVeiculo" Type="varchar" MaxLength="100" />
+          <Property Name="Cor" Type="varchar" MaxLength="50" />
+          <Property Name="TipoVeiculo" Type="varchar" MaxLength="20" />
+          <Property Name="ValorMensalidade" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="DtInicio" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="15" />
+          <Property Name="DtCadastro" Type="datetime" />
+          <Property Name="DtAlteracao" Type="datetime" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Pessoa">
+          <Key>
+            <PropertyRef Name="IdPessoa" />
+          </Key>
+          <Property Name="IdPessoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CpfCnpj" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="NrIdentidade" Type="varchar" MaxLength="10" />
+          <Property Name="DtNascimento" Type="datetime" />
+          <Property Name="NrTelefoneCelular" Type="varchar" MaxLength="15" />
+          <Property Name="NrTelefoneFixo" Type="varchar" MaxLength="15" />
+          <Property Name="IdEndereco" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Receita">
+          <Key>
+            <PropertyRef Name="IdReceita" />
+          </Key>
+          <Property Name="IdReceita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Valor" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="IdReceitaGrupo" Type="int" />
+          <Property Name="DtRecebimento" Type="datetime" />
+          <Property Name="IdMensalista" Type="int" />
+          <Property Name="DtCadastro" Type="datetime" />
+          <Property Name="DtAlteracao" Type="datetime" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="ReceitaGrupo">
+          <Key>
+            <PropertyRef Name="IdReceitaGrupo" />
+          </Key>
+          <Property Name="IdReceitaGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="500" />
+          <Property Name="DtCadastro" Type="datetime" />
+          <Property Name="DtAlteracao" Type="datetime" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="Senha" Type="varchar" MaxLength="8" />
+          <Property Name="Perfil" Type="varchar" MaxLength="20" />
+          <Property Name="DtCadastro" Type="datetime" Nullable="false" />
+          <Property Name="DtAlteracao" Type="datetime" />
+          <Property Name="IdUsuarioCadastro" Type="int" />
+        </EntityType>
+        <Association Name="FK_Despesa_DespesaCategoria">
+          <End Role="DespesaCategoria" Type="Self.DespesaCategoria" Multiplicity="0..1" />
+          <End Role="Despesa" Type="Self.Despesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DespesaCategoria">
+              <PropertyRef Name="IdDespesaCategoria" />
+            </Principal>
+            <Dependent Role="Despesa">
+              <PropertyRef Name="IdDespesaCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Despesa_Funcionario">
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="0..1" />
+          <End Role="Despesa" Type="Self.Despesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="IdFuncionario" />
+            </Principal>
+            <Dependent Role="Despesa">
+              <PropertyRef Name="IdFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Despesa_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Despesa" Type="Self.Despesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Despesa">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DespesaCategoria_DespesaCategoriaGrupo">
+          <End Role="DespesaCategoriaGrupo" Type="Self.DespesaCategoriaGrupo" Multiplicity="0..1" />
+          <End Role="DespesaCategoria" Type="Self.DespesaCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DespesaCategoriaGrupo">
+              <PropertyRef Name="IdDespesaCategoriaGrupo" />
+            </Principal>
+            <Dependent Role="DespesaCategoria">
+              <PropertyRef Name="IdDespesaCategoriaGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DespesaItem_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="DespesaCategoria" Type="Self.DespesaCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="DespesaCategoria">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DespesaItemGrupo_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="DespesaCategoriaGrupo" Type="Self.DespesaCategoriaGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="DespesaCategoriaGrupo">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funcionario_Pessoa">
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="IdPessoa" />
+            </Principal>
+            <Dependent Role="Funcionario">
+              <PropertyRef Name="IdPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funcionario_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Funcionario">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensalista_Pessoa">
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
+          <End Role="Mensalista" Type="Self.Mensalista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="IdPessoa" />
+            </Principal>
+            <Dependent Role="Mensalista">
+              <PropertyRef Name="IdPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensalista_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Mensalista" Type="Self.Mensalista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Mensalista">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pessoa_Endereco">
+          <End Role="Endereco" Type="Self.Endereco" Multiplicity="0..1" />
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Endereco">
+              <PropertyRef Name="IdEndereco" />
+            </Principal>
+            <Dependent Role="Pessoa">
+              <PropertyRef Name="IdEndereco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receita_Mensalista">
+          <End Role="Mensalista" Type="Self.Mensalista" Multiplicity="0..1" />
+          <End Role="Receita" Type="Self.Receita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mensalista">
+              <PropertyRef Name="IdMensalista" />
+            </Principal>
+            <Dependent Role="Receita">
+              <PropertyRef Name="IdMensalista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receita_ReceitaGrupo">
+          <End Role="ReceitaGrupo" Type="Self.ReceitaGrupo" Multiplicity="0..1" />
+          <End Role="Receita" Type="Self.Receita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceitaGrupo">
+              <PropertyRef Name="IdReceitaGrupo" />
+            </Principal>
+            <Dependent Role="Receita">
+              <PropertyRef Name="IdReceitaGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receita_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Receita" Type="Self.Receita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Receita">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceitaGrupo_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="ReceitaGrupo" Type="Self.ReceitaGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="ReceitaGrupo">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Usuario1" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Usuario1">
+              <PropertyRef Name="IdUsuarioCadastro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ParkingDbModelStoreContainer">
+          <EntitySet Name="Despesa" EntityType="Self.Despesa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DespesaCategoria" EntityType="Self.DespesaCategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DespesaCategoriaGrupo" EntityType="Self.DespesaCategoriaGrupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Endereco" EntityType="Self.Endereco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Funcionario" EntityType="Self.Funcionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mensalista" EntityType="Self.Mensalista" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pessoa" EntityType="Self.Pessoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Receita" EntityType="Self.Receita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReceitaGrupo" EntityType="Self.ReceitaGrupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Despesa_DespesaCategoria" Association="Self.FK_Despesa_DespesaCategoria">
+            <End Role="DespesaCategoria" EntitySet="DespesaCategoria" />
+            <End Role="Despesa" EntitySet="Despesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Despesa_Funcionario" Association="Self.FK_Despesa_Funcionario">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Despesa" EntitySet="Despesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Despesa_Usuario" Association="Self.FK_Despesa_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Despesa" EntitySet="Despesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DespesaCategoria_DespesaCategoriaGrupo" Association="Self.FK_DespesaCategoria_DespesaCategoriaGrupo">
+            <End Role="DespesaCategoriaGrupo" EntitySet="DespesaCategoriaGrupo" />
+            <End Role="DespesaCategoria" EntitySet="DespesaCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DespesaItem_Usuario" Association="Self.FK_DespesaItem_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="DespesaCategoria" EntitySet="DespesaCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DespesaItemGrupo_Usuario" Association="Self.FK_DespesaItemGrupo_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="DespesaCategoriaGrupo" EntitySet="DespesaCategoriaGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funcionario_Pessoa" Association="Self.FK_Funcionario_Pessoa">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Funcionario" EntitySet="Funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funcionario_Usuario" Association="Self.FK_Funcionario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Funcionario" EntitySet="Funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensalista_Pessoa" Association="Self.FK_Mensalista_Pessoa">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Mensalista" EntitySet="Mensalista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensalista_Usuario" Association="Self.FK_Mensalista_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensalista" EntitySet="Mensalista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pessoa_Endereco" Association="Self.FK_Pessoa_Endereco">
+            <End Role="Endereco" EntitySet="Endereco" />
+            <End Role="Pessoa" EntitySet="Pessoa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receita_Mensalista" Association="Self.FK_Receita_Mensalista">
+            <End Role="Mensalista" EntitySet="Mensalista" />
+            <End Role="Receita" EntitySet="Receita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receita_ReceitaGrupo" Association="Self.FK_Receita_ReceitaGrupo">
+            <End Role="ReceitaGrupo" EntitySet="ReceitaGrupo" />
+            <End Role="Receita" EntitySet="Receita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receita_Usuario" Association="Self.FK_Receita_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Receita" EntitySet="Receita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceitaGrupo_Usuario" Association="Self.FK_ReceitaGrupo_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ReceitaGrupo" EntitySet="ReceitaGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Usuario" Association="Self.FK_Usuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario1" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ParkingDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ParkingDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Despesa" EntityType="ParkingDbModel.Despesa" />
+          <EntitySet Name="DespesaCategoria" EntityType="ParkingDbModel.DespesaCategoria" />
+          <EntitySet Name="DespesaCategoriaGrupo" EntityType="ParkingDbModel.DespesaCategoriaGrupo" />
+          <EntitySet Name="Endereco" EntityType="ParkingDbModel.Endereco" />
+          <EntitySet Name="Funcionario" EntityType="ParkingDbModel.Funcionario" />
+          <EntitySet Name="Pessoa" EntityType="ParkingDbModel.Pessoa" />
+          <EntitySet Name="Receita" EntityType="ParkingDbModel.Receita" />
+          <EntitySet Name="ReceitaGrupo" EntityType="ParkingDbModel.ReceitaGrupo" />
+          <EntitySet Name="Usuario" EntityType="ParkingDbModel.Usuario" />
+          <AssociationSet Name="FK_Despesa_DespesaCategoria" Association="ParkingDbModel.FK_Despesa_DespesaCategoria">
+            <End Role="DespesaCategoria" EntitySet="DespesaCategoria" />
+            <End Role="Despesa" EntitySet="Despesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Despesa_Funcionario" Association="ParkingDbModel.FK_Despesa_Funcionario">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Despesa" EntitySet="Despesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Despesa_Usuario" Association="ParkingDbModel.FK_Despesa_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Despesa" EntitySet="Despesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DespesaCategoria_DespesaCategoriaGrupo" Association="ParkingDbModel.FK_DespesaCategoria_DespesaCategoriaGrupo">
+            <End Role="DespesaCategoriaGrupo" EntitySet="DespesaCategoriaGrupo" />
+            <End Role="DespesaCategoria" EntitySet="DespesaCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DespesaItem_Usuario" Association="ParkingDbModel.FK_DespesaItem_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="DespesaCategoria" EntitySet="DespesaCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DespesaItemGrupo_Usuario" Association="ParkingDbModel.FK_DespesaItemGrupo_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="DespesaCategoriaGrupo" EntitySet="DespesaCategoriaGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pessoa_Endereco" Association="ParkingDbModel.FK_Pessoa_Endereco">
+            <End Role="Endereco" EntitySet="Endereco" />
+            <End Role="Pessoa" EntitySet="Pessoa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funcionario_Pessoa" Association="ParkingDbModel.FK_Funcionario_Pessoa">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Funcionario" EntitySet="Funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funcionario_Usuario" Association="ParkingDbModel.FK_Funcionario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Funcionario" EntitySet="Funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receita_ReceitaGrupo" Association="ParkingDbModel.FK_Receita_ReceitaGrupo">
+            <End Role="ReceitaGrupo" EntitySet="ReceitaGrupo" />
+            <End Role="Receita" EntitySet="Receita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receita_Usuario" Association="ParkingDbModel.FK_Receita_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Receita" EntitySet="Receita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceitaGrupo_Usuario" Association="ParkingDbModel.FK_ReceitaGrupo_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ReceitaGrupo" EntitySet="ReceitaGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Usuario" Association="ParkingDbModel.FK_Usuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario1" EntitySet="Usuario" />
+          </AssociationSet>
+          <EntitySet Name="Mensalista" EntityType="ParkingDbModel.Mensalista" />
+          <AssociationSet Name="FK_Mensalista_Pessoa" Association="ParkingDbModel.FK_Mensalista_Pessoa">
+            <End Role="Pessoa" EntitySet="Pessoa" />
+            <End Role="Mensalista" EntitySet="Mensalista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensalista_Usuario" Association="ParkingDbModel.FK_Mensalista_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensalista" EntitySet="Mensalista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receita_Mensalista" Association="ParkingDbModel.FK_Receita_Mensalista">
+            <End Role="Mensalista" EntitySet="Mensalista" />
+            <End Role="Receita" EntitySet="Receita" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Despesa">
+          <Key>
+            <PropertyRef Name="IdDespesa" />
+          </Key>
+          <Property Name="IdDespesa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ValorDespesa" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+          <Property Name="DtPagamento" Type="DateTime" Precision="3" />
+          <Property Name="DtVencimento" Type="DateTime" Precision="3" />
+          <Property Name="Pago" Type="Boolean" Nullable="false" />
+          <Property Name="PossuiParcelas" Type="Boolean" Nullable="false" />
+          <Property Name="QtParcelas" Type="Int32" />
+          <Property Name="IdDespesaCategoria" Type="Int32" />
+          <Property Name="IdFuncionario" Type="Int32" />
+          <Property Name="DtCadastro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DtAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <Property Name="CodDespesa" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="IdFornecedor" Type="Int32" />
+          <NavigationProperty Name="DespesaCategoria" Relationship="ParkingDbModel.FK_Despesa_DespesaCategoria" FromRole="Despesa" ToRole="DespesaCategoria" />
+          <NavigationProperty Name="Funcionario" Relationship="ParkingDbModel.FK_Despesa_Funcionario" FromRole="Despesa" ToRole="Funcionario" />
+          <NavigationProperty Name="Usuario" Relationship="ParkingDbModel.FK_Despesa_Usuario" FromRole="Despesa" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="DespesaCategoria">
+          <Key>
+            <PropertyRef Name="IdDespesaCategoria" />
+          </Key>
+          <Property Name="IdDespesaCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DtCadastro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DtAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <Property Name="IdDespesaCategoriaGrupo" Type="Int32" />
+          <NavigationProperty Name="Despesa" Relationship="ParkingDbModel.FK_Despesa_DespesaCategoria" FromRole="DespesaCategoria" ToRole="Despesa" />
+          <NavigationProperty Name="DespesaCategoriaGrupo" Relationship="ParkingDbModel.FK_DespesaCategoria_DespesaCategoriaGrupo" FromRole="DespesaCategoria" ToRole="DespesaCategoriaGrupo" />
+          <NavigationProperty Name="Usuario" Relationship="ParkingDbModel.FK_DespesaItem_Usuario" FromRole="DespesaCategoria" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="DespesaCategoriaGrupo">
+          <Key>
+            <PropertyRef Name="IdDespesaCategoriaGrupo" />
+          </Key>
+          <Property Name="IdDespesaCategoriaGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DtCadastro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DtAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="DespesaCategoria" Relationship="ParkingDbModel.FK_DespesaCategoria_DespesaCategoriaGrupo" FromRole="DespesaCategoriaGrupo" ToRole="DespesaCategoria" />
+          <NavigationProperty Name="Usuario" Relationship="ParkingDbModel.FK_DespesaItemGrupo_Usuario" FromRole="DespesaCategoriaGrupo" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Endereco">
+          <Key>
+            <PropertyRef Name="IdEndereco" />
+          </Key>
+          <Property Name="IdEndereco" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Logradouro" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="NrLogradouro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Complemento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="UF" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Cep" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pessoa" Relationship="ParkingDbModel.FK_Pessoa_Endereco" FromRole="Endereco" ToRole="Pessoa" />
+        </EntityType>
+        <EntityType Name="Funcionario">
+          <Key>
+            <PropertyRef Name="IdFuncionario" />
+          </Key>
+          <Property Name="IdFuncionario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cargo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DtAdmissao" Type="DateTime" Precision="3" />
+          <Property Name="Salario" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IdPessoa" Type="Int32" Nullable="false" />
+          <Property Name="DtCadastro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DtAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="Despesa" Relationship="ParkingDbModel.FK_Despesa_Funcionario" FromRole="Funcionario" ToRole="Despesa" />
+          <NavigationProperty Name="Pessoa" Relationship="ParkingDbModel.FK_Funcionario_Pessoa" FromRole="Funcionario" ToRole="Pessoa" />
+          <NavigationProperty Name="Usuario" Relationship="ParkingDbModel.FK_Funcionario_Usuario" FromRole="Funcionario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Pessoa">
+          <Key>
+            <PropertyRef Name="IdPessoa" />
+          </Key>
+          <Property Name="IdPessoa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CpfCnpj" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="NrIdentidade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DtNascimento" Type="DateTime" Precision="3" />
+          <Property Name="NrTelefoneCelular" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="NrTelefoneFixo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="IdEndereco" Type="Int32" />
+          <NavigationProperty Name="Endereco" Relationship="ParkingDbModel.FK_Pessoa_Endereco" FromRole="Pessoa" ToRole="Endereco" />
+          <NavigationProperty Name="Funcionario" Relationship="ParkingDbModel.FK_Funcionario_Pessoa" FromRole="Pessoa" ToRole="Funcionario" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mensalista" Relationship="ParkingDbModel.FK_Mensalista_Pessoa" FromRole="Pessoa" ToRole="Mensalista" />
+        </EntityType>
+        <EntityType Name="Receita">
+          <Key>
+            <PropertyRef Name="IdReceita" />
+          </Key>
+          <Property Name="IdReceita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="Decimal" Nullable="false" Precision="16" Scale="2" />
+          <Property Name="IdReceitaGrupo" Type="Int32" />
+          <Property Name="DtRecebimento" Type="DateTime" Precision="3" />
+          <Property Name="IdMensalista" Type="Int32" />
+          <Property Name="DtCadastro" Type="DateTime" Precision="3" />
+          <Property Name="DtAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="ReceitaGrupo" Relationship="ParkingDbModel.FK_Receita_ReceitaGrupo" FromRole="Receita" ToRole="ReceitaGrupo" />
+          <NavigationProperty Name="Usuario" Relationship="ParkingDbModel.FK_Receita_Usuario" FromRole="Receita" ToRole="Usuario" />
+          <NavigationProperty Name="Mensalista" Relationship="ParkingDbModel.FK_Receita_Mensalista" FromRole="Receita" ToRole="Mensalista" />
+        </EntityType>
+        <EntityType Name="ReceitaGrupo">
+          <Key>
+            <PropertyRef Name="IdReceitaGrupo" />
+          </Key>
+          <Property Name="IdReceitaGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DtCadastro" Type="DateTime" Precision="3" />
+          <Property Name="DtAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="Receita" Relationship="ParkingDbModel.FK_Receita_ReceitaGrupo" FromRole="ReceitaGrupo" ToRole="Receita" />
+          <NavigationProperty Name="Usuario" Relationship="ParkingDbModel.FK_ReceitaGrupo_Usuario" FromRole="ReceitaGrupo" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Perfil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DtCadastro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DtAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuarioCadastro" Type="Int32" />
+          <NavigationProperty Name="Despesa" Relationship="ParkingDbModel.FK_Despesa_Usuario" FromRole="Usuario" ToRole="Despesa" />
+          <NavigationProperty Name="DespesaCategoria" Relationship="ParkingDbModel.FK_DespesaItem_Usuario" FromRole="Usuario" ToRole="DespesaCategoria" />
+          <NavigationProperty Name="DespesaCategoriaGrupo" Relationship="ParkingDbModel.FK_DespesaItemGrupo_Usuario" FromRole="Usuario" ToRole="DespesaCategoriaGrupo" />
+          <NavigationProperty Name="Funcionario" Relationship="ParkingDbModel.FK_Funcionario_Usuario" FromRole="Usuario" ToRole="Funcionario" />
+          <NavigationProperty Name="Receita" Relationship="ParkingDbModel.FK_Receita_Usuario" FromRole="Usuario" ToRole="Receita" />
+          <NavigationProperty Name="ReceitaGrupo" Relationship="ParkingDbModel.FK_ReceitaGrupo_Usuario" FromRole="Usuario" ToRole="ReceitaGrupo" />
+          <NavigationProperty Name="Usuario1" Relationship="ParkingDbModel.FK_Usuario_Usuario" FromRole="Usuario" ToRole="Usuario1" />
+          <NavigationProperty Name="Usuario2" Relationship="ParkingDbModel.FK_Usuario_Usuario" FromRole="Usuario1" ToRole="Usuario" />
+          <NavigationProperty Name="Mensalista" Relationship="ParkingDbModel.FK_Mensalista_Usuario" FromRole="Usuario" ToRole="Mensalista" />
+        </EntityType>
+        <Association Name="FK_Despesa_DespesaCategoria">
+          <End Type="ParkingDbModel.DespesaCategoria" Role="DespesaCategoria" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.Despesa" Role="Despesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DespesaCategoria">
+              <PropertyRef Name="IdDespesaCategoria" />
+            </Principal>
+            <Dependent Role="Despesa">
+              <PropertyRef Name="IdDespesaCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Despesa_Funcionario">
+          <End Type="ParkingDbModel.Funcionario" Role="Funcionario" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.Despesa" Role="Despesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="IdFuncionario" />
+            </Principal>
+            <Dependent Role="Despesa">
+              <PropertyRef Name="IdFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Despesa_Usuario">
+          <End Type="ParkingDbModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.Despesa" Role="Despesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Despesa">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DespesaCategoria_DespesaCategoriaGrupo">
+          <End Type="ParkingDbModel.DespesaCategoriaGrupo" Role="DespesaCategoriaGrupo" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.DespesaCategoria" Role="DespesaCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DespesaCategoriaGrupo">
+              <PropertyRef Name="IdDespesaCategoriaGrupo" />
+            </Principal>
+            <Dependent Role="DespesaCategoria">
+              <PropertyRef Name="IdDespesaCategoriaGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DespesaItem_Usuario">
+          <End Type="ParkingDbModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.DespesaCategoria" Role="DespesaCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="DespesaCategoria">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DespesaItemGrupo_Usuario">
+          <End Type="ParkingDbModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.DespesaCategoriaGrupo" Role="DespesaCategoriaGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="DespesaCategoriaGrupo">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pessoa_Endereco">
+          <End Type="ParkingDbModel.Endereco" Role="Endereco" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.Pessoa" Role="Pessoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Endereco">
+              <PropertyRef Name="IdEndereco" />
+            </Principal>
+            <Dependent Role="Pessoa">
+              <PropertyRef Name="IdEndereco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funcionario_Pessoa">
+          <End Type="ParkingDbModel.Pessoa" Role="Pessoa" Multiplicity="1" />
+          <End Type="ParkingDbModel.Funcionario" Role="Funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="IdPessoa" />
+            </Principal>
+            <Dependent Role="Funcionario">
+              <PropertyRef Name="IdPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funcionario_Usuario">
+          <End Type="ParkingDbModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.Funcionario" Role="Funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Funcionario">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receita_ReceitaGrupo">
+          <End Type="ParkingDbModel.ReceitaGrupo" Role="ReceitaGrupo" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.Receita" Role="Receita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceitaGrupo">
+              <PropertyRef Name="IdReceitaGrupo" />
+            </Principal>
+            <Dependent Role="Receita">
+              <PropertyRef Name="IdReceitaGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receita_Usuario">
+          <End Type="ParkingDbModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.Receita" Role="Receita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Receita">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceitaGrupo_Usuario">
+          <End Type="ParkingDbModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.ReceitaGrupo" Role="ReceitaGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="ReceitaGrupo">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Usuario">
+          <End Type="ParkingDbModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.Usuario" Role="Usuario1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Usuario1">
+              <PropertyRef Name="IdUsuarioCadastro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Mensalista">
+          <Key>
+            <PropertyRef Name="IdMensalista" />
+          </Key>
+          <Property Name="IdMensalista" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPessoa" Type="Int32" Nullable="false" />
+          <Property Name="PlacaVeiculo" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="MarcaModeloVeiculo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Cor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoVeiculo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ValorMensalidade" Type="Decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="DtInicio" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DtCadastro" Type="DateTime" Precision="3" />
+          <Property Name="DtAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="Pessoa" Relationship="ParkingDbModel.FK_Mensalista_Pessoa" FromRole="Mensalista" ToRole="Pessoa" />
+          <NavigationProperty Name="Usuario" Relationship="ParkingDbModel.FK_Mensalista_Usuario" FromRole="Mensalista" ToRole="Usuario" />
+          <NavigationProperty Name="Receita" Relationship="ParkingDbModel.FK_Receita_Mensalista" FromRole="Mensalista" ToRole="Receita" />
+        </EntityType>
+        <Association Name="FK_Mensalista_Pessoa">
+          <End Type="ParkingDbModel.Pessoa" Role="Pessoa" Multiplicity="1" />
+          <End Type="ParkingDbModel.Mensalista" Role="Mensalista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoa">
+              <PropertyRef Name="IdPessoa" />
+            </Principal>
+            <Dependent Role="Mensalista">
+              <PropertyRef Name="IdPessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensalista_Usuario">
+          <End Type="ParkingDbModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.Mensalista" Role="Mensalista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Mensalista">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receita_Mensalista">
+          <End Type="ParkingDbModel.Mensalista" Role="Mensalista" Multiplicity="0..1" />
+          <End Type="ParkingDbModel.Receita" Role="Receita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mensalista">
+              <PropertyRef Name="IdMensalista" />
+            </Principal>
+            <Dependent Role="Receita">
+              <PropertyRef Name="IdMensalista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ParkingDbModelStoreContainer" CdmEntityContainer="ParkingDbEntities">
+          <EntitySetMapping Name="Despesa">
+            <EntityTypeMapping TypeName="ParkingDbModel.Despesa">
+              <MappingFragment StoreEntitySet="Despesa">
+                <ScalarProperty Name="IdFornecedor" ColumnName="IdFornecedor" />
+                <ScalarProperty Name="CodDespesa" ColumnName="CodDespesa" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="DtAlteracao" ColumnName="DtAlteracao" />
+                <ScalarProperty Name="DtCadastro" ColumnName="DtCadastro" />
+                <ScalarProperty Name="IdFuncionario" ColumnName="IdFuncionario" />
+                <ScalarProperty Name="IdDespesaCategoria" ColumnName="IdDespesaCategoria" />
+                <ScalarProperty Name="QtParcelas" ColumnName="QtParcelas" />
+                <ScalarProperty Name="PossuiParcelas" ColumnName="PossuiParcelas" />
+                <ScalarProperty Name="Pago" ColumnName="Pago" />
+                <ScalarProperty Name="DtVencimento" ColumnName="DtVencimento" />
+                <ScalarProperty Name="DtPagamento" ColumnName="DtPagamento" />
+                <ScalarProperty Name="ValorDespesa" ColumnName="ValorDespesa" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdDespesa" ColumnName="IdDespesa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DespesaCategoria">
+            <EntityTypeMapping TypeName="ParkingDbModel.DespesaCategoria">
+              <MappingFragment StoreEntitySet="DespesaCategoria">
+                <ScalarProperty Name="IdDespesaCategoriaGrupo" ColumnName="IdDespesaCategoriaGrupo" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="DtAlteracao" ColumnName="DtAlteracao" />
+                <ScalarProperty Name="DtCadastro" ColumnName="DtCadastro" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="IdDespesaCategoria" ColumnName="IdDespesaCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DespesaCategoriaGrupo">
+            <EntityTypeMapping TypeName="ParkingDbModel.DespesaCategoriaGrupo">
+              <MappingFragment StoreEntitySet="DespesaCategoriaGrupo">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="DtAlteracao" ColumnName="DtAlteracao" />
+                <ScalarProperty Name="DtCadastro" ColumnName="DtCadastro" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="IdDespesaCategoriaGrupo" ColumnName="IdDespesaCategoriaGrupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Endereco">
+            <EntityTypeMapping TypeName="ParkingDbModel.Endereco">
+              <MappingFragment StoreEntitySet="Endereco">
+                <ScalarProperty Name="Cep" ColumnName="Cep" />
+                <ScalarProperty Name="UF" ColumnName="UF" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+                <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+                <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+                <ScalarProperty Name="NrLogradouro" ColumnName="NrLogradouro" />
+                <ScalarProperty Name="Logradouro" ColumnName="Logradouro" />
+                <ScalarProperty Name="IdEndereco" ColumnName="IdEndereco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Funcionario">
+            <EntityTypeMapping TypeName="ParkingDbModel.Funcionario">
+              <MappingFragment StoreEntitySet="Funcionario">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="DtAlteracao" ColumnName="DtAlteracao" />
+                <ScalarProperty Name="DtCadastro" ColumnName="DtCadastro" />
+                <ScalarProperty Name="IdPessoa" ColumnName="IdPessoa" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+                <ScalarProperty Name="DtAdmissao" ColumnName="DtAdmissao" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="IdFuncionario" ColumnName="IdFuncionario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pessoa">
+            <EntityTypeMapping TypeName="ParkingDbModel.Pessoa">
+              <MappingFragment StoreEntitySet="Pessoa">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdEndereco" ColumnName="IdEndereco" />
+                <ScalarProperty Name="NrTelefoneFixo" ColumnName="NrTelefoneFixo" />
+                <ScalarProperty Name="NrTelefoneCelular" ColumnName="NrTelefoneCelular" />
+                <ScalarProperty Name="DtNascimento" ColumnName="DtNascimento" />
+                <ScalarProperty Name="NrIdentidade" ColumnName="NrIdentidade" />
+                <ScalarProperty Name="CpfCnpj" ColumnName="CpfCnpj" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="IdPessoa" ColumnName="IdPessoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Receita">
+            <EntityTypeMapping TypeName="ParkingDbModel.Receita">
+              <MappingFragment StoreEntitySet="Receita">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="DtAlteracao" ColumnName="DtAlteracao" />
+                <ScalarProperty Name="DtCadastro" ColumnName="DtCadastro" />
+                <ScalarProperty Name="IdMensalista" ColumnName="IdMensalista" />
+                <ScalarProperty Name="DtRecebimento" ColumnName="DtRecebimento" />
+                <ScalarProperty Name="IdReceitaGrupo" ColumnName="IdReceitaGrupo" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="IdReceita" ColumnName="IdReceita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReceitaGrupo">
+            <EntityTypeMapping TypeName="ParkingDbModel.ReceitaGrupo">
+              <MappingFragment StoreEntitySet="ReceitaGrupo">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="DtAlteracao" ColumnName="DtAlteracao" />
+                <ScalarProperty Name="DtCadastro" ColumnName="DtCadastro" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="IdReceitaGrupo" ColumnName="IdReceitaGrupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="ParkingDbModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdUsuarioCadastro" ColumnName="IdUsuarioCadastro" />
+                <ScalarProperty Name="DtAlteracao" ColumnName="DtAlteracao" />
+                <ScalarProperty Name="DtCadastro" ColumnName="DtCadastro" />
+                <ScalarProperty Name="Perfil" ColumnName="Perfil" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mensalista">
+            <EntityTypeMapping TypeName="ParkingDbModel.Mensalista">
+              <MappingFragment StoreEntitySet="Mensalista">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="DtAlteracao" ColumnName="DtAlteracao" />
+                <ScalarProperty Name="DtCadastro" ColumnName="DtCadastro" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DtInicio" ColumnName="DtInicio" />
+                <ScalarProperty Name="ValorMensalidade" ColumnName="ValorMensalidade" />
+                <ScalarProperty Name="TipoVeiculo" ColumnName="TipoVeiculo" />
+                <ScalarProperty Name="Cor" ColumnName="Cor" />
+                <ScalarProperty Name="MarcaModeloVeiculo" ColumnName="MarcaModeloVeiculo" />
+                <ScalarProperty Name="PlacaVeiculo" ColumnName="PlacaVeiculo" />
+                <ScalarProperty Name="IdPessoa" ColumnName="IdPessoa" />
+                <ScalarProperty Name="IdMensalista" ColumnName="IdMensalista" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

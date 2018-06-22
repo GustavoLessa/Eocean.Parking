@@ -206,20 +206,21 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="../charts/chartjs.html" class="nav-link">
+                                <li class="nav-item">                                    
+                                    <a href="/DespesaCategoriaGrupos/Index.cshtml" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Despesas</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="../charts/flot.html" class="nav-link">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Despesa categorias</p>
-                                    </a>
+                                <li class="nav-item">                                   
+                                    @*<a href="~/Views/Home/Index.cshtml" class="nav-link">*@
+                                        @Html.ActionLink("Despesa Categorias", "Index", "DespesaCategoriaGrupos")
+                                        @*<i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Despesa categorias</p>*@
+                                    
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../charts/inline.html" class="nav-link">
+                                    <a href="~/Views/DespesaCategoriaGrupos/Index.cshtml" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Despesa grupos</p>
                                     </a>
